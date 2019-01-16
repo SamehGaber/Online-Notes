@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   
-    <title>Online Notes</title>
+    <title> MyNotes</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="styling.css" rel="stylesheet">
@@ -27,30 +27,48 @@
             <!-- collabsable elements in navigation bar -->
             <div class="navbar-collapse collapse" id="navbarCollapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">home</a></li>
+                <li><a href="#">Profile</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Contact Us</a></li>
-                <!-- <li><a href="#"> Login </a></li> -->
+                <li class="active"><a href="#">MyNotes</a></li>
+
+
               </ul>
-               <ul class="nav navbar-nav navbar-right" ><li><a href="#login_modal" data-toggle="modal">Login</a></li></ul> 
+               <ul class="nav navbar-nav navbar-right" >
+               <li><a>Logedin as <strong>username</strong></a></li>
+               <li><a>Log Out</a></li>
+               </ul> 
              
             </div>
           
        </div>
     </nav>
 
-    <!-- jumbtron with sign up button  -->
-     <div class ="jumbotron" id="myContainer">
-        <h1>Online Notes App</h1>
-        <p>your Notes with you wherever you go</p>
-        <p>Easy to use , protects all your notes</p>
-        <button type="button" class="btn btn-lg btn-success signup green" data-target="#signup_modal" data-toggle="modal">Sign Up</button>
+    <!-- Notes Container  -->
+     <div class="container">
+       <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+           <div class="buttons">
+              <button id="addNote" type="button" class="btn btn-info btn-lg">Add Notes</button>
+              <button id="edit" type="button" class="btn btn-info btn-lg pull-right">Edit</button>
+              <button id="done" type="button" class="btn btn-info btn-lg green pull-right">Done</button>
+              <button id="allNotes" type="button" class="btn btn-info btn-lg">All Notes</button>
 
-    </div>
+           </div>
 
+           <div id="notepad">
+            <textarea rows="10"> 
 
+            </textarea>
+           </div>
 
+           <div id="notes" class="notes">
+             <!-- ajax call to a php file -->
+            </div>
 
+        </div>
+       </div>
+     </div>
     <!-- login form -->
     <form class="form" id= "login_form" method="post">
     <div class="modal" id="login_modal" role="dialog" aria-labelledby="Hlabel" aria-hidden="true">

@@ -42,6 +42,40 @@ Body{
     width: 100%;
 
 }
+/* sign up form */
+#signup_modal{
+    padding:20px;
+
+}
+/* login form */
+#login_modal{
+    padding:20px;
+}
+
+.container{
+
+  margin-top: 100px;
+}
+/* hiding buttons */
+#done,#allNotes,#notepad{
+  display:none;
+}
+ .buttons{
+   margin-bottom: 20px;
+ }
+ textarea{
+   display:none;
+   width:100%;
+   max-width:100%;
+   max-height:200px;
+   font-size: 15px;
+   line-height: 1.5em;
+   border-left-width: 10px;
+   border-color: crimson;
+   color:brown;
+   padding:10px;
+ }
+
 
 
 
@@ -82,7 +116,7 @@ Body{
   .navbar-custom .navbar-nav > .active > a,
   .navbar-custom .navbar-nav > .active > a:hover,
   .navbar-custom .navbar-nav > .active > a:focus {
-    color: #c0c0c0;
+    color:#807d7d;
     background-color: #8bb4ca;
     background-image: -webkit-gradient(linear, left 0%, left 100%, from(#8bb4ca), to(#aecbda));
     background-image: -webkit-linear-gradient(top, #8bb4ca, 0%, #aecbda, 100%);
