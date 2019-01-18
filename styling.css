@@ -75,6 +75,9 @@ Body{
    color:brown;
    padding:10px;
  }
+ tr{
+   cursor: pointer;
+ }
 
 
 
