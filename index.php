@@ -96,7 +96,7 @@
   </form>
 
     <!-- sign up form -->
-    <form class="form" id="signup_form" method="post">
+    <form class="form" id="signup_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="modal" id="signup_modal" role="dialog" aria-labelledby="Hlabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -111,7 +111,7 @@
             <div id="signupMessage"></div>
 
              <div class="form-group">
-               <input type="text" name="name" id="name" placeholder="user name" class="form-control">
+               <input type="text" name="username" id="name" placeholder="user name" class="form-control">
              </div>
              <div class="form-group">
                <input type="email" name="email" id="email" placeholder="email" class="form-control">
@@ -127,7 +127,7 @@
 
         <div class="modal-footer">
            <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
-           <button type="submit" class="btn btn-success green" name="signup" data-dismiss="modal" data-target="#" data-toggle="modal">sign Up</button>
+           <button type="submit" class="btn btn-success green" name="signup"  data-target="#" data-toggle="modal">sign Up</button>
         </div>
     </div>   
    </div>  
@@ -203,7 +203,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>  
+
+   <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
   </body>
 </html>
