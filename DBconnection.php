@@ -12,7 +12,7 @@ $conn = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME);
     if(mysqli_connect_errno()){
         echo 'failed to connect to MySQL'.mysqli_connect_errno().'</br>'.mysqli_connect_error();
         }
-       // else { echo ' connected successfully !<br>';}
+        //else { echo ' connected successfully !<br>';}
 
 
 ?>

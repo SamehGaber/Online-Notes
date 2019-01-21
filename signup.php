@@ -61,12 +61,66 @@ $missingPassword2 ="<p><strong>please confirm your password </strong></p>";
         //print error message
         $resultMessage = '<div class="alert alert-danger">' . $errors .'</div>';
         echo $resultMessage;
+        exit;
 
-    }else { $resultMessage = '<div class="alert alert-success"> your request is submitted successfully </div>';
-    echo $resultMessage;
+    }
+    
+    //Prepare variables for the queries
+$username = mysqli_real_escape_string($conn, $_POST["username"]);
+$email = mysqli_real_escape_string($conn, $_POST["email"]);
+$password = mysqli_real_escape_string($conn, $password);
+#$password=md5($password);
+$password =hash('sha256',$password);
+//hexadecimal ..(md5)produces 128 bits = 32 chracters
+// hash function produces 256 bits = 64 characters
+
+//If username exists in the users table print error
+$sql = "SELECT * FROM users WHERE username = '$username'";
+$result = mysqli_query($conn, $sql);
+ if(!$result){
+    echo '<div class="alert alert-danger">Error running the query!</div>';
+    echo '<div class="alert alert-danger">' . mysqli_error($conn) . '</div>';
+    exit;
+  }
+$results = mysqli_num_rows($result);
+  if($results){
+    echo '<div class="alert alert-danger">That username is already registered. Do you want to log in?</div>';  exit;
+  }
+
+
+//If email exists in the users table print error
+
+ $sql = "SELECT * FROM users WHERE email = '$email'";
+ $result = mysqli_query($conn, $sql);
+   if(!$result){
+    echo '<div class="alert alert-danger">Error running the query!</div>'; exit;
+  }
+ $results = mysqli_num_rows($result);
+  if($results){
+    echo '<div class="alert alert-danger">That email is already registered. Do you want to log in?</div>';  exit;
+ }
+
+//creating activate code 
+$activationKey= bin2hex(openssl_random_pseudo_bytes(16));
+
+//insert user details and activation code 
+$sql = "INSERT INTO users(username ,email, password ,activation) VALUES ('$username','$email','$password','$activationKey')";
+if(!mysqli_query($conn,$sql)){
+    echo '<div class="alert alert-danger">Error inserting user details to Databse !</div>'; exit;
 }
 
+//sending mail with activation link
+    $to = $email;
+    $subject ="Confirm the registeration";
+    $message ="please click on the linke below to activate your account :\n\n ";
+    $message .="https://samehcode.offyoucode.co.uk/websites/4.onlineNotes/activate.php?email=".urlencode($email)."&key=$activationKey";
+    $headers ="Content-type: text/html";
 
+ if(mail($to,$subject,$message,$headers)){
+    echo '<div class="alert alert-success">thank you for registering , an activation link has been sent to your email</div>';           
+ }else{
+    echo ' can`t send mails';
+ }
     
 
 
