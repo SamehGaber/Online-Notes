@@ -86,7 +86,7 @@
 
         <div class="modal-footer">
            <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
-           <button type="submit" class="btn btn-success green" name="login" data-dismiss="modal" data-target="#" data-toggle="modal">Login</button>
+           <input class="btn btn-success green" name="login" type="submit" value="Login">
            <button type="submit" class="btn btn-default navbar-left " name="register" data-dismiss="modal" data-target="#signup_modal" data-toggle="modal">Register</button>
 
         </div>

@@ -68,7 +68,7 @@ $missingPassword2 ="<p><strong>please confirm your password </strong></p>";
     //Prepare variables for the queries
 $username = mysqli_real_escape_string($conn, $_POST["username"]);
 $email = mysqli_real_escape_string($conn, $_POST["email"]);
-$password = mysqli_real_escape_string($conn, $password);
+$password = mysqli_real_escape_string($conn, $password1);
 #$password=md5($password);
 $password =hash('sha256',$password);
 //hexadecimal ..(md5)produces 128 bits = 32 chracters

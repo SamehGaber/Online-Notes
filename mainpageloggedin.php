@@ -1,3 +1,9 @@
+<?php 
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,8 +41,8 @@
 
               </ul>
                <ul class="nav navbar-nav navbar-right" >
-               <li><a>Logedin as <strong>username</strong></a></li>
-               <li><a>Log Out</a></li>
+               <li><a>Logedin as <strong><?php echo $_SESSION['username'];?></strong></a></li>
+               <li><a href="index.php" style="cursor:pointer" >Log Out</a></li>
                </ul> 
              
             </div>
