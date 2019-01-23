@@ -1,3 +1,14 @@
+<?php 
+session_start();
+include('DBconnection.php');
+//remember me 
+include('remember.php');
+//logout 
+include('logout.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

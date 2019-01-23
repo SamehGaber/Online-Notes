@@ -59,7 +59,34 @@ if(!$result){
 if(empty($_POST['rememberme'])){
     //If remember me is not checked
     echo "success";
-}
+}else{
+ //creat two variables and store them in cookies
+  $authentificator1 = bin2hex(openssl_random_pseudo_bytes(10)); //10 bytes = 80 bits /4 = 20 charcters
+  $authentificator2 = (openssl_random_pseudo_bytes(20));
+  function f1($a,$b){
+       $c=$a.",".bin2hex($b);
+       return $c;
+  }
+  $cookieValue =f1($authentificator1,$authentificator2);
+  setcookie("rememberme",$cookieValue,time()+15*24*60*60);
+  //preparing variable for the sql query 
+  function f2 ($a){
+      $res =hash('sha256',$a);
+      return $res;
+  }
+  $f2authentificator2=f2($authentificator2);
+  $user_id = $_SESSION['user_id'];
+  $expiration = date('Y-m-d H:i:s',time()+15*24*60*60);
+  // run query to store in remember me table 
+  $sql = "INSERT INTO rememberme (authentificator1, f2authentificator2, user_id, expires) VALUES ('$authentificator1','$f2authentificator2','$user_id','$expiration')";
+   $result =mysqli_query($conn,$sql);
+   if(!$result){
+    echo '<div class="alert alert-danger">Error running the query!</div>';
+    echo '<div class="alert alert-danger">' . mysqli_error($conn) . '</div>';
+  }
+  else{ echo "success";}
+
+ }
 
 }
 

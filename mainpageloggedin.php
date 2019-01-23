@@ -1,6 +1,8 @@
 <?php 
 session_start();
-
+if(!isset($_SESSION['user_id'])){
+  header("location:index.php");
+}
 ?>
 
 
@@ -42,7 +44,7 @@ session_start();
               </ul>
                <ul class="nav navbar-nav navbar-right" >
                <li><a>Logedin as <strong><?php echo $_SESSION['username'];?></strong></a></li>
-               <li><a href="index.php" style="cursor:pointer" >Log Out</a></li>
+               <li><a href="index.php?logout=1" style="cursor:pointer" >Log Out</a></li>
                </ul> 
              
             </div>
