@@ -57,3 +57,33 @@ $("#login_form").submit(function(event){
   
   
   });
+
+  // ajax call for the forget password  form
+$("#forgetpassword_form").submit(function(event){
+    //prevent default php processing 
+    event.preventDefault();
+      //collect user inputs 
+      var datatopost = $(this).serializeArray();
+        //send them to signup.php using Ajax
+       $.ajax({
+          url: "forgotPassword.php",
+          type: "POST",
+          data: datatopost,
+          success:function(data){
+              if(data == "success"){
+                  window.location ="resetPassword.php";
+              }else{
+                $('#forgetpasswordMessage').html(data);   
+            }
+          } ,
+          error: function(){
+      // ajax calll fails:show ajax call error
+              $("#forgetpasswordMessage").html("<div class='alert alert-danger'>there was an error with ajax call</div>");
+          }
+  
+  
+  
+       }); 
+  
+  
+  });

@@ -162,7 +162,7 @@ include('logout.php');
   
         <div class="modal-body">
             <!-- forgetpassword messages from php code -->
-            <div id="forgetpassword"></div>
+            <div id="forgetpasswordMessage"></div>
 
              <div class="form-group">
                <input type="email" name="forgotemail" id="forgotemail" placeholder="email" class="form-control">
@@ -173,7 +173,7 @@ include('logout.php');
 
         <div class="modal-footer">
            <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
-           <button type="submit" class="btn btn-success green" name="forgotpassword" data-dismiss="modal" data-target="#" data-toggle="modal">Submit</button>
+           <button type="submit" class="btn btn-success green" name="forgotpassword" data-target="#" data-toggle="modal">Submit</button>
            <button type="submit" class="btn btn-default navbar-left " name="register" data-dismiss="modal" data-target="#signup_modal" data-toggle="modal">Register</button>
 
         </div>

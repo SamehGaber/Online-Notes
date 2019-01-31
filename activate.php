@@ -18,7 +18,7 @@ $query = mysqli_query($conn, $sql);
 
 if(mysqli_affected_rows($conn)==1){
     $resultMessage = '<div class="alert alert-success">your account has been activated</div>';
-    $resultMessage .= '<a href="index.php" type="button" class ="btn btn-lg btn-success">log in</a>';
+    $resultMessage .= '<a href="index.php" type="button" class="btn btn-lg btn-success">login</a>';
 }else{
     $resultMessage = '<div class="alert alert-danger">your account can`t be activated , please try again later</div>';
 
@@ -55,6 +55,9 @@ if(mysqli_affected_rows($conn)==1){
         </div>
         </div>
     
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
 
