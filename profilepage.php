@@ -35,7 +35,7 @@
 
               </ul>
                <ul class="nav navbar-nav navbar-right" >
-               <li><a>Logedin as <strong>username</strong></a></li>
+               <li><a>Logedin as <strong><?php echo $_SESSION['username'];?></strong></a></li>
                <li><a>Log Out</a></li>
                </ul> 
              
@@ -53,11 +53,11 @@
             <table class=" table table-stripped table-hover table-condensed table-bordered">
                <tr data-target="#updateUserName" data-toggle="modal" >
                  <td>UserName</td>
-                 <td>Valid</td>
+                 <td><?php echo $_SESSION['username'];?></td>
                </tr>
                <tr data-target="#updateEmail" data-toggle="modal">
                  <td>Email</td>
-                 <td>Valid</td>
+                 <td><?php echo $_SESSION['email'];?></td>
                </tr>
                <tr data-target="#updatePassword" data-toggle="modal">
                  <td>Password</td>

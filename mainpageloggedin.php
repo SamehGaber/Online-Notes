@@ -35,7 +35,7 @@ if(!isset($_SESSION['user_id'])){
             <!-- collabsable elements in navigation bar -->
             <div class="navbar-collapse collapse" id="navbarCollapse">
               <ul class="nav navbar-nav">
-                <li><a href="#">Profile</a></li>
+                <li><a href="profilepage.php">Profile</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Contact Us</a></li>
                 <li class="active"><a href="#">MyNotes</a></li>
@@ -54,6 +54,7 @@ if(!isset($_SESSION['user_id'])){
 
     <!-- Notes Container  -->
      <div class="container">
+     
        <div class="row">
         <div class="col-md-offset-3 col-md-6">
            <div class="buttons">

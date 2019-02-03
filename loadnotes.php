@@ -15,9 +15,11 @@ $sql = "SELECT * FROM notes WHERE user_id ='$user_id' ORDER BY time DESC";
   }
   if(mysqli_num_rows($result)>0){
       while($row= mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        $note_id=$row['id'];
         $noteBody=$row['note'];
         $noteTime=$row['time'];
-        echo "<div class='noteheader'>
+        $noteTime= date("F d,Y h:i A",$noteTime);
+        echo "<div class='noteheader' id='$note_id'>
         <div class='notebody'>$noteBody</div>
         <div class='notetime'>$noteTime </div>
           </div>";
