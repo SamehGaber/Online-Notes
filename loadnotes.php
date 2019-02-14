@@ -19,10 +19,16 @@ $sql = "SELECT * FROM notes WHERE user_id ='$user_id' ORDER BY time DESC";
         $noteBody=$row['note'];
         $noteTime=$row['time'];
         $noteTime= date("F d,Y h:i A",$noteTime);
-        echo "<div class='noteheader' id='$note_id'>
-        <div class='notebody'>$noteBody</div>
-        <div class='notetime'>$noteTime </div>
-          </div>";
+        echo "
+        <div class='wholeNote'>
+         <div class='col-xs-5 col-sm-3 delete'>
+          <button class='btn-lg btn-danger' style='width:100%'>Delete</button>
+         </div>
+          <div class='noteheader' id='$note_id'>
+           <div class='notebody'>$noteBody</div>
+           <div class='notetime'>$noteTime </div>
+          </div>
+        </div>";
 
       }
  

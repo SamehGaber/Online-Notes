@@ -42,6 +42,7 @@ $("#allNotes").click(function(event){
           $("#notes").html(data);
           showHide(["#edit","#addNote","#noteheader","#notes"],["#notepad","#allNotes","textarea"]);
         clickOnNote();
+        clickOnDelete();
         } ,
         error: function(){
     // ajax calll fails:show ajax call error
@@ -58,7 +59,24 @@ $("#allNotes").click(function(event){
 
 });
 //click on done after editing : loading notes again
+$("#done").click(function(){
+    editmode=false;
+    $(".noteheader").removeClass("col-xs-7 col-sm-9");
+    showHide(["#addNote","#edit"],["#done",".delete"]);
+
+
+
+});
 //click on edit : go to edit mode 
+
+$("#edit").click(function(){
+    editmode=true;
+    $(".noteheader").addClass("col-xs-7 col-sm-9");
+    showHide(["#done","#addNote",".delete"],["#edit"]);
+
+
+
+});
 
 //function for 
  //click on a note 
@@ -69,13 +87,52 @@ function clickOnNote(){
    activenote = $(this).attr("id");
       //fill text area 
       $('textarea').val($(this).find(".notebody").text());
-      showHide(["#notepad","#allNotes","textarea"],["#edit","#done","#addNote","#noteheader","#notes"]);
+      showHide(["#notepad","#allNotes","textarea"],["#edit","#done","#addNote","#noteheader","#notes","#delete"]);
       $("textarea").focus();
   }
 
  });
 };
  // click on delete buttons
+ function clickOnDelete(){
+   $(".delete").click(function(){
+   var deletebutton =$(this);
+   // sending ajax call 
+   $.ajax({
+    url: "deletenotes.php",
+    type:"POST",
+    // we need to send current note content along with the note id 
+    data:{id:deletebutton.next().attr("id")},
+    success:function(data){
+     if(data=='err'){
+        $("#notes").html("<div class='alert alert-danger'>there was an error with reurned values</div>");
+
+     } else{ // remove the html content for that note 
+        deletebutton.parent().remove();
+
+     }
+
+    } ,
+    error: function(){
+// ajax calll fails:show ajax call error
+        $("#notes").html("<div class='alert alert-danger'>there was an error with ajax call</div>");
+    }
+
+
+
+ }); 
+
+
+
+
+
+   })
+ }
+
+
+
+
+
  //hide and show 
  function showHide(array1, array2){
   for(i=0; i<array1.length; i++){
