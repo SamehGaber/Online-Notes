@@ -1,3 +1,31 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user_id'])){
+  header("location: index.php");
+}
+include('DBconnection.php');
+$user_id =$_SESSION['user_id'];
+// get user name 
+// to be able to display the changes happens we retrieve data from the database and not using session variables 
+$sql = "SELECT * FROM users WHERE user_id='$user_id'";
+$result =mysqli_query($conn,$sql);
+$count = mysqli_num_rows($result);
+if($count==1){
+  $row= mysqli_fetch_array($result,MYSQLI_ASSOC);
+  $username = $row['username'];
+  $email = $row['email'];
+
+}else {
+  echo "there was an error retrieving username and email from database ";
+}
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,16 +55,16 @@
             <!-- collabsable elements in navigation bar -->
             <div class="navbar-collapse collapse" id="navbarCollapse">
               <ul class="nav navbar-nav">
-                <li><a href="#">Profile</a></li>
+                <li class="active"><a href="#">Profile</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Contact Us</a></li>
-                <li class="active"><a href="#">MyNotes</a></li>
+                <li><a href="mainpageloggedin.php">MyNotes</a></li>
 
 
               </ul>
                <ul class="nav navbar-nav navbar-right" >
-               <li><a>Logedin as <strong><?php echo $_SESSION['username'];?></strong></a></li>
-               <li><a>Log Out</a></li>
+               <li><a>Logedin as <strong><?php echo $username;?></strong></a></li>
+               <li><a href="index.php?logout=1" style="cursor:pointer">Log Out</a></li>
                </ul> 
              
             </div>
@@ -48,16 +76,16 @@
      <div class="container">
        <div class="row">
         <div class="col-md-offset-3 col-md-6">
-        <h2>General Accounting setting </h2>
+        <h2 style='color:white;'>General Accounting setting </h2>
           <div class="table-responsive">
             <table class=" table table-stripped table-hover table-condensed table-bordered">
                <tr data-target="#updateUserName" data-toggle="modal" >
                  <td>UserName</td>
-                 <td><?php echo $_SESSION['username'];?></td>
+                 <td><?php echo $username;?></td>
                </tr>
                <tr data-target="#updateEmail" data-toggle="modal">
                  <td>Email</td>
-                 <td><?php echo $_SESSION['email'];?></td>
+                 <td><?php echo $email;?></td>
                </tr>
                <tr data-target="#updatePassword" data-toggle="modal">
                  <td>Password</td>
@@ -97,7 +125,7 @@
 
              <div class="form-group">
              <label for="updateUserName"> edit username</label>
-               <input type="text"  name="updateUserName" id="updateUserName" value="userName" class="form-control">
+               <input type="text"  name="updateUserName" id="updateUserName" value="<?php echo $username; ?>" class="form-control">
              </div>
                
          
@@ -105,7 +133,7 @@
 
         <div class="modal-footer">
            <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
-           <button type="submit" class="btn btn-success green" name="login" data-dismiss="modal" data-target="#" data-toggle="modal">Submit</button>
+           <button type="submit" class="btn btn-success green" name="updateName" data-target="#" data-toggle="modal" >Submit</button>
 
         </div>
     </div>   
@@ -206,6 +234,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script src="profile.js"></script>
 
   </body>
 </html>
